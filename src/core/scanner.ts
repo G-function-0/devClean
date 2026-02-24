@@ -1,11 +1,16 @@
 import * as fs from "fs/promises";
 import * as path from "path";
+import type { ProjectInfo } from "../utils/type.js";
 
 
-interface ProjectInfo  {
-    name :  string
-    path : string
-}
+const SKIP_FOLDERS = new Set([
+  "node_modules",
+  ".git",
+  "AppData",
+  "Program Files",
+  "Program Files (x86)",
+  "$Recycle.Bin",
+]);
 
 
 async function scanDirectory(basePath : string) : Promise<ProjectInfo[]> {
@@ -18,19 +23,25 @@ async function scanDirectory(basePath : string) : Promise<ProjectInfo[]> {
         } catch (error) {
             return;
         }
-    
         for(const entry of entries){
             const fullPath = path.join(dir,entry.name);
+
             if(entry.isDirectory()){
                 if(entry.name === "node_modules" || entry.name.startsWith("."))  continue;
-    
+                if (SKIP_FOLDERS.has(entry.name)) continue;
+
                 const packageJsonPath = path.join(fullPath,"package.json");  // <---- for checking package.json is present or not 
-    
+
                 if(await exists(packageJsonPath)) {
-                    results.push({
-                        name : entry.name,
-                        path : fullPath
-                    })
+                    const nodeModulePath = path.join(fullPath,"node_modules");
+                    const hasNodeModules = await exists(nodeModulePath);
+                    if(hasNodeModules){
+                        results.push({
+                            name : entry.name,
+                            path : fullPath
+                        })
+                        continue;
+                    }
                 }
     
                 await walk(fullPath);
