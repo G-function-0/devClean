@@ -1,24 +1,10 @@
-import * as os from "os";
-import { scanDirectory } from "./core/scanner.js"
-import { projectAnalyzer } from "./core/analyzer.js";
-import { printReport } from "./utils/reporter.js";
+#!/usr/bin/env node
 
+import { program } from "./commands/command.js";
+//todo1 amm use rate limit and do parallel analysis of size of node modules 
+//todo2 do parallel deletion of node modules folder
 async function main(){
-    const baseUrl = os.homedir();
-
-
-    console.log("AI is Scanning...    ",baseUrl);
-    const projects = await scanDirectory(baseUrl);
-    
-    console.log(`Found ${projects.length} projects: \n`);
-
-    console.log("AI is Analyzing Your Projects...");
-
-
-    const analyzedProjects = await projectAnalyzer(projects);
-
-    printReport(analyzedProjects);
-    
+    program.parse();
 }
 
 main();

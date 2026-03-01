@@ -16,7 +16,7 @@ const projectAnalyzer = async (projects : ProjectInfo[]) : Promise<AnalyzedProje
         
         const stats = await fs.stat(nodeModulesPath);
         const age = getAgeInDays(stats.mtime)
-            result.push({
+        result.push({
             name : project.name,
             path : project.path,
             nodeModulesPath,
@@ -26,6 +26,7 @@ const projectAnalyzer = async (projects : ProjectInfo[]) : Promise<AnalyzedProje
 
     }
 
+    result.sort((a,b) => ( a.lastModified - b.lastModified));
     return result;
 
 

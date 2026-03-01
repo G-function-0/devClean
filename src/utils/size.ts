@@ -17,7 +17,7 @@ const getFolderSize = async( nodeModulesPath  :string) : Promise<number> => {
             total += stats.size;
         }
     }
-
+    
     return total;
 }
 
