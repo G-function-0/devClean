@@ -8,7 +8,7 @@ import { printReport } from "../utils/reporter.js";
 const program = new Command();
 
 program
-.name("devclean")
+.name("gwipe")
 .description("Analyze projects and clean unused node_modules using AI")
 .version("1.0.0")
 

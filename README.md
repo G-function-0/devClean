@@ -1,9 +1,9 @@
-# 📦 devclean
+# 📦 gwipe
 Analyze and clean unused node_modules folders safely from your system.
 
-devclean is a fast CLI tool that scans your projects, identifies old node_modules folders, and helps you free up disk space — safely and interactively.
+gwipe is a fast CLI tool that scans your projects, identifies old node_modules folders, and helps you free up disk space — safely and interactively.
 
-## 🚀 Why devclean?
+## 🚀 Why gwipe?
 As developers, we:
 
 * Create tons of side projects
@@ -17,7 +17,7 @@ Reinstalling dependencies takes one command:
 
 But finding and deleting old node_modules manually?
 Painful.
-devclean solves that.
+gwipe solves that.
 
 ## ⚡ Features
 * 🔍 Scan projects from any directory
@@ -30,27 +30,29 @@ devclean solves that.
 ## 📥 Installation
 Global Install
 
-`npm install -g devclean`
+`npm install -g @ujjawal-verma/gwipe`
 
 ## 🛠 Usage
 
 ### 🔍 Analyze Projects
 Scan current directory:
 
-`devclean analyze`
+`gwipe analyze`
 
 Scan specific directory:
 
-`devclean analyze --dir D:/projects`
+`gwipe analyze --dir D:/projects`
 
 Deep scan entire home directory:
 
-`devclean analyze --deep`
+`gwipe analyze --deep`
 
 ### 🧹 Clean Old Projects
 Delete node_modules older than 30 days:
 
-`devclean clean --older-than 30`
+`gwipe clean --deep --older-than 30`
+Or
+`gwipe clean --dir D:/projects --older-than 30`
 
 You will be shown:
 
@@ -78,7 +80,7 @@ You can always reinstall dependencies with:
 
 ## 💡 Example Workflow
 
-`devclean clean --older-than 60`
+`gwipe clean --deep --older-than 60`
 
 Output:
 

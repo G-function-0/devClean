@@ -1,7 +1,7 @@
 {
-  "name": "devclean",
+  "name": "@ujjawal-verma/gwipe",
   "version": "1.0.0",
-  "description": "Node module cleaner projec mvp",
+  "description": "Node module cleaner project mvp",
   "license": "ISC",
   "author": "",
   "type": "module",
@@ -21,6 +21,6 @@
     "inquirer": "^13.3.0"
   },
   "bin": {
-    "devclean": "./dist/index.js"
+    "gwipe": "./dist/index.js"
   }
 }
